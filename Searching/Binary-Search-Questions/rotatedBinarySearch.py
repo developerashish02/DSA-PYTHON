@@ -45,8 +45,12 @@ def rotatedBinarySearch(arr):
     return -1
 
 
-arr = [4, 5, 6, 7, 0, 1, 2]
+arr = [1, 2, 3, 4, 5, 6, 7]
 target = 5
+# 1 2 3 4 5 6 7  rotated = 0
+# 7 2 3 4 5 6 1  rotated = 1
+# 6 7 2 3 4 5 1 2   rotated = 2
+
 
 pivot = rotatedBinarySearch(arr)
 
