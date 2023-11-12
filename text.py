@@ -1,34 +1,43 @@
 
 
-def findWords(str):
-    spaces = 1
+def search(nums, target, isLeft):
+    start = 0
+    end = len(nums) - 1
+    count = 0
 
-    for s in str:
-        if s == ' ':
-            spaces += 1
+    while start <= end:
+        mid = (start + end) // 2
+        if nums[mid] == target:
+            count += 1
+            if isLeft:
+                end = mid - 1
 
-    return spaces
+            else:
+                start = mid + 1
 
+        elif target > nums[mid]:
+            start = mid + 1
 
-def mostWordsFound(sentences):
+        else:
+            end = mid - 1
 
-    if len(sentences) == 1:
-        return 1
-
-    if len(sentences) == 0:
-        return 0
-
-    maxWord = 0
-    for index in range(len(sentences)):
-        ans = findWords(sentences[index])
-
-        if ans > maxWord:
-            maxWord = ans
-
-    return maxWord
+    return count
 
 
-sentences = []
+def countNumbers(nums, target):
+    searchInLeft = search(nums, target, True)
+    searchInRight = search(nums, target, False)
+    ans = (searchInLeft + searchInRight) - 1
 
-ans = mostWordsFound(sentences)
-print(ans)
+    if ans == - 1:
+        ans += 1
+
+    return ans
+
+
+nums = [2, 4, 10, 10, 10, 10, 10, 10, 11, 12, 14, 14, 17, 19, 19]
+target = 10
+
+
+ans = countNumbers(nums, target)
+print("The Count of numbers is ", ans)
