@@ -1,25 +1,71 @@
-def getSecondOrderElements(a: [int]) -> [int]:
-    # finding the first largest
-    first_max = a[0]
-    second_max = -1
-    # finding the second largest
-    first_min = a[0]
-    second_min = -1
 
-    length = len(a)
+def brut_force_second_largest(nums):
+    # sort the array
+    nums.sort()
+    # print(nums)
+    # lets checking for the largest element
+    length = len(nums) - 1
+    second_largest = nums[length]
 
-    for item in range(1, length):
-        if a[item] > first_max:
-            second_max = first_max
-            first_max = a[item]
+    # checking for the second largest
+    for i in range(length - 1, -1, -1):
+        if nums[i] != second_largest:
+            second_largest = nums[i]
+            break
 
-        if a[item] < first_min:
-            second_min = first_min
-            first_min = a[item]
+    # return second largest
+    return second_largest
 
-    return [second_max, second_min]
+    # Time Complexity - N LOG N
+    # Space Complexly - o (1)
 
 
-nums = [4, 5, 3, 6, 1]
-first_second_largest = getSecondOrderElements(nums)
-print(first_second_largest)
+def better_second_largest(nums):
+    length = len(nums)
+
+    if length < 0:
+        return "Nums is empty"
+
+    # assume first element in largest
+    largest = nums[0]
+
+    # finding the largest
+    for item in nums:
+        if item > largest:
+            largest = item
+
+    # second pass find out second largest
+    second_largest = -1  # assume array do not have negative values
+    for item in nums:
+        if item > second_largest and item < largest:
+            second_largest = item
+    # return ans
+    return second_largest
+
+    # Time Complexity - O(2N) because Its taking two pass
+    # Space Complexity - O(1)
+
+
+def optimal_second_largest(nums):
+    largest = nums[0]
+    second_largest = -1
+
+    for item in nums:
+        if item > largest:
+            second_largest = largest
+            largest = item
+
+        if item > second_largest and item < largest:
+            second_largest = item
+
+    return second_largest
+
+    # Time complexity - O(N)
+    # Space complexity - O (1)
+
+
+nums = [1, 2, 3, 4, 5]
+# ans = brut_force_second_largest(nums)
+# ans = better_second_largest(nums)
+ans = optimal_second_largest(nums)
+print(ans)
