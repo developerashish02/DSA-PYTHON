@@ -1,13 +1,14 @@
 
-def fibonacciNumber(num):
-    # Base case
-    if num < 2:
+
+def fib_number(num):
+    # base condition
+    if num <= 1:
         return num
 
-    # recursive functions
-    return fibonacciNumber(num - 1) + fibonacciNumber(num - 2)
+    # recurrence relation
+    return fib_number(num - 1) + fib_number(num - 2)
 
 
-n = 4
-ans = fibonacciNumber(n)
-print("The Fibonacci number is",  ans)
+# main function
+ans = fib_number(4)
+print(ans)

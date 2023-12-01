@@ -1,27 +1,27 @@
-# why here i am using recursion because this problem breaks into smaller problem
-# divide and conquer
-
-from typing import List
 
 
-def binary_search(nums: List[int], target: int, start: int, end: int) -> int:
+def rec_binary_search(arr, target, start, end):
     # base case
     if start > end:
-        return -1
+        return - 1
 
+    # body functions
     mid = (start + end) // 2
 
-    if nums[mid] == target:
+    # if we found the ans
+    if arr[mid] == target:
         return mid
+    # if target > mid search on the right hand side
+    elif target > arr[mid]:
+        return rec_binary_search(arr, target, mid + 1, end)
 
-    if target > nums[mid]:
-        return binary_search(nums, target, mid + 1, end)
-
+    # if target < mid search on the left hand side
     else:
-        return binary_search(nums, target, start, mid - 1)
+        return rec_binary_search(arr, target, start, mid - 1)
 
 
-nums = [1, 2, 4, 5, 6, 7, 8]
-target = 11
-ans = binary_search(nums, target, 0, len(nums) - 1)
-print("The Ans IS : ", ans)
+arr = [1, 2, 3, 4, 5, 6, 7, 8]
+target = 5
+# main function
+ans = rec_binary_search(arr, target, 0, len(arr) - 1)
+print(ans)

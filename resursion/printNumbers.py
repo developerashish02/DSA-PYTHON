@@ -1,27 +1,26 @@
 
-
-def printNumbers1(n):
-    print(n)
-    printNumbers2(2)
-
-
-def printNumbers2(n):
-    print(n)
-    printNumbers3(3)
+def print_number(num):
+    print(num)
+    print_number2(2)
 
 
-def printNumbers3(n):
-    print(n)
-    printNumbers4(4)
+def print_number2(num):
+    print(num)
+    print_number3(3)
 
 
-def printNumbers4(n):
-    print(n)
-    printNumbers5(5)
+def print_number3(num):
+    print(num)
+    print_number4(4)
 
 
-def printNumbers5(n):
-    print(n)
+def print_number4(num):
+    print(num)
+    print_number5(5)
 
 
-printNumbers1(1)
+def print_number5(num):
+    print(num)
+
+
+print_number(1)
