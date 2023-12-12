@@ -1,37 +1,21 @@
-from typing import List
+def skip_app_not_starts_with_app_not_starts_with_apple(string, index, output):
+    # base case
+    if index == len(string):
+        return output
+
+    # recursion call
+    # if substring contains "app" but does not start with "apple", skip the word
+    substring = string[index:]
+    if substring.startswith("app") and not substring.startswith("apple"):
+        return skip_app_not_starts_with_app_not_starts_with_apple(string, index + 3, output)
+
+    # if "apple" is not found, add the character to the output
+    else:
+        output += string[index]
+        return skip_app_not_starts_with_app_not_starts_with_apple(string, index + 1, output)
 
 
-def maximumProduct(self, nums: List[int]) -> int:
-    # first three max
-    firstMax = float("-inf")
-    secondMax = float("-inf")
-    thirdMax = float("-inf")
-    # first two min
-    firstMin = float("inf")
-    secondMin = float("inf")
-
-    for item in nums:
-        # Find out the first max
-        if item >= firstMax:
-            thirdMax = secondMax
-            secondMax = firstMax
-            firstMax = item
-
-        # Find out the second max
-        elif item >= secondMax and item < firstMax:
-            thirdMax = secondMax
-            secondMax = item
-
-        elif item >= thirdMax and item < secondMax and item < firstMax:
-            thirdMax = item
-
-        # Find out the first min
-        if item <= firstMin:
-            secondMin = firstMin
-            firstMin = item
-
-        # Find out the second min
-        elif item <= secondMin and item < firstMin:
-            secondMin = item
-
-    return max((firstMax * secondMax * thirdMax), (firstMin * secondMin * firstMax))
+# Example usage
+string = "appbananaapple"
+ans = skip_app_not_starts_with_app_not_starts_with_apple(string, 0, "")
+print(ans)
