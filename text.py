@@ -1,21 +1,47 @@
-def skip_app_not_starts_with_app_not_starts_with_apple(string, index, output):
-    # base case
-    if index == len(string):
-        return output
+class Cart:
+    # initializer method
+    def __init__(self):
+        self.items = {}
+        self.prices = {"Mango": 22, "Laptop": 30000}
 
-    # recursion call
-    # if substring contains "app" but does not start with "apple", skip the word
-    substring = string[index:]
-    if substring.startswith("app") and not substring.startswith("apple"):
-        return skip_app_not_starts_with_app_not_starts_with_apple(string, index + 3, output)
+    # add items method
+    def add_items(self, item_name, item_quantity):
+        self.items[item_name] = item_quantity
 
-    # if "apple" is not found, add the character to the output
-    else:
-        output += string[index]
-        return skip_app_not_starts_with_app_not_starts_with_apple(string, index + 1, output)
+    # remove item method
+    def remove_item(self, item_name):
+        del self.items[item_name]
+
+    # update quantity
+    def update_quantity(self, item_name, updated_quantity):
+        self.items[item_name] = updated_quantity
+
+    # get total price
+    def get_total_price(self):
+        totalPrice = 0
+
+        for item, quantity in self.items.items():
+            totalPrice += quantity * self.prices[item]
+
+        return totalPrice
 
 
-# Example usage
-string = "appbananaapple"
-ans = skip_app_not_starts_with_app_not_starts_with_apple(string, 0, "")
-print(ans)
+# ----------------------------------------Object Works------------------------------------------ #
+
+# create a object
+cart_01 = Cart()
+
+# Adding a quantity
+cart_01.add_items("Mango", 45)
+cart_01.add_items("Laptop", 1)
+
+# remove items
+# cart_01.remove_item("Mango")
+# cart_01.remove_item("Laptop")
+
+# update quantity
+
+cart_01.update_quantity("Mango", 100)
+print(cart_01.items)
+
+print(cart_01.get_total_price())

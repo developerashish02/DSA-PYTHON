@@ -38,9 +38,30 @@ def print_subsequence_ASCII(p, up, index):
     # then skip the character at current index
     print_subsequence_ASCII(p, up, index + 1)
     # for the ascii value
-    print_subsequence_ASCII(p + str(ord(up[index])), index + 1)
+    print_subsequence_ASCII(p + str(ord(up[index])), up,  index + 1)
+
+
+def print_subsequence_ASCII_return(p, up, index):
+    # base condition
+    if index == len(up):
+        ans = []
+        ans.append(p)
+        return ans
+
+    # first take the character at current index
+    first = print_subsequence_ASCII_return(p + up[index], up, index + 1)
+    # then skip the character at current index
+    second = print_subsequence_ASCII_return(p, up, index + 1)
+    # for the ascii value
+    third = print_subsequence_ASCII_return(
+        p + str(ord(up[index])), up,  index + 1)
+
+    first += second
+    first += third
+
+    return first
 
 
 string = "abc"
-ans = print_subsequence_ASCII("", string, 0)
+ans = print_subsequence_ASCII_return("", string, 0)
 print(ans)
