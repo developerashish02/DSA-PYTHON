@@ -25,7 +25,7 @@ class LinkList:
             temp = temp.next
             count += 1
 
-        if temp is None:
+        if count != index:
             return "Index out of bounds"
 
         val = prev.next.data
@@ -101,8 +101,60 @@ class LinkList:
             self.tail.next = new_node
             self.tail = new_node
 
-    # insert at nt position
-    def insert_nth_position(self, data, index):
+    # insert at nth position
+
+      # insert at nth position
+    def insert_at_nth(self, data, index):
+
+        if index == 0:
+            self.insert_first(data)
+            return
+
+        if index < 0:
+            print("Index out of bound")
+            return
+
+        newNode = Node(data)
+
+        temp = self.head
+        prev = None
+        count = 0
+
+        while temp != None and count != index:
+            prev = temp
+            temp = temp.next
+            count += 1
+
+        if count != index:
+            print("Index out of bound")
+            return
+
+        newNode.next = prev.next
+        prev.next = newNode
+        if self.head is None:
+            print("Index Out Of Bound")
+            return
+
+        if index == 0:
+            self.insert_first(data)
+            return
+
+        newNode = Node(data)
+
+        temp = self.head
+        prev = None
+        count = 0
+
+        while temp.next != None and count != index:
+            prev = temp
+            temp = temp.next
+            count += 1
+
+        if temp is None:
+            return ("Index Out Of Bound")
+
+        newNode.next = prev.next
+        prev.next = newNode
         newNode = Node(data)
 
         # insert at 0 index

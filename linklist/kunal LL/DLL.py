@@ -9,7 +9,30 @@ class LinkList:
     def __init__(self):
         self.head = None
 
+    # add in last
+
+    def add_in_last(self, data):
+
+        if self.head is None:
+            self.inset_first(data)
+            return
+
+        temp = self.head
+
+        while temp.next != None:
+            temp = temp.next
+
+        new_node = Node(data)
+
+        new_node.next = None
+
+        if new_node.prev != None:
+            new_node.prev = temp
+
+        temp.next = new_node
+
     # insert first
+
     def inset_first(self, data):
         new_node = Node(data)
         new_node.next = self.head
@@ -21,6 +44,7 @@ class LinkList:
         self.head = new_node
 
     # print DLL
+    # print forwards
 
     def display_forward(self):
         temp = self.head
@@ -30,7 +54,8 @@ class LinkList:
             temp = temp.next
         print("None")
 
-    def display_backword(self):
+    # print  backwards
+    def display_backward(self):
         temp = self.head
 
         while temp.next != None:
@@ -44,11 +69,12 @@ class LinkList:
 
 
 my_list = LinkList()
-my_list.inset_first(10)
-my_list.inset_first(20)
-my_list.inset_first(30)
-my_list.inset_first(40)
+my_list.add_in_last(10)
+my_list.add_in_last(20)
+my_list.add_in_last(30)
+my_list.add_in_last(40)
+my_list.add_in_last(50)
 
 my_list.display_forward()
 
-my_list.display_backword()
+# my_list.display_backward()
