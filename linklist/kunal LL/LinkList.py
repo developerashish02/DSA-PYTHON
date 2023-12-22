@@ -175,19 +175,60 @@ class LinkList:
         prev.next = newNode
         newNode.next = temp
 
+    # remove duplicate
+
+    def remove_duplicate(self):
+        temp = self.head
+
+        while temp.next != None:
+            if temp.data == temp.next.data:
+                temp.next = temp.next.next
+
+            else:
+                temp = temp.next
+
+    # merge two link list
+
+
+def merge(first, second):
+    ans = LinkList()
+    temp1 = first.head
+    temp2 = second.head
+
+    while temp1 is not None and temp2 is not None:
+        if temp1.data < temp2.data:
+            ans.inset_last(temp1.data)
+            temp1 = temp1.next
+        else:
+            ans.inset_last(temp2.data)
+            temp2 = temp2.next
+
+    # Add remaining nodes from the first list, if any
+    while temp1 is not None:
+        ans.inset_last(temp1.data)
+        temp1 = temp1.next
+
+    # Add remaining nodes from the second list, if any
+    while temp2 is not None:
+        ans.inset_last(temp2.data)
+        temp2 = temp2.next
+
+    return ans
+
 
 # ---------------------------------------Objects --------------------------------------- #
 my_list = LinkList()
-my_list.inset_last(10)
-my_list.inset_last(20)
-my_list.inset_last(30)
-my_list.inset_last(40)
+my_list_2 = LinkList()
 
-# my_list.insert_nth_position(100, 1)
-# my_list.delete_first()
-# ans = my_list.delete_last()
+my_list.inset_last(1)
+my_list.inset_last(3)
+my_list.inset_last(5)
 
-my_list.displayLL()
-ans = my_list.delete_nth_index(3)
-print("Deleting Last Node is : ", ans)
-my_list.displayLL()
+my_list_2.inset_last(1)
+my_list_2.inset_last(3)
+my_list_2.inset_last(5)
+
+
+merged_list = merge(my_list, my_list_2)
+
+merged_list.displayLL()
