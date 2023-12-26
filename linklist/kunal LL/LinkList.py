@@ -76,7 +76,7 @@ class LinkList:
         if self.tail is None:
             self.tail = self.head
 
-        self.size += 1
+        # self.size += 1
 
     # display list
 
@@ -189,6 +189,47 @@ class LinkList:
 
     # merge two link list
 
+    def cycle(self):
+        slow = self.head
+        fast = self.head
+
+        while fast != None and fast.next != None:
+            slow = slow.next
+            fast = fast.next.next
+
+            if slow is fast:
+                return True
+
+        return False
+
+    def length_of_cycle(self):
+        slow = self.head
+        fast = self.head
+
+        while fast.next != None and fast != None:
+            slow = slow.next
+            fast = fast.next.next
+            if slow == fast:
+                length = 0
+                temp = slow
+                while True:
+                    temp = temp.next
+                    length += 1
+
+                    if slow == temp:
+                        return length
+        return 0
+
+    def middleOfLL(self):
+        slow = self.head
+        fast = self.head
+
+        while fast != None and fast.next != None:
+            slow = slow.next
+            fast = fast.next.next
+
+        return slow.data
+
 
 def merge(first, second):
     ans = LinkList()
@@ -216,7 +257,7 @@ def merge(first, second):
     return ans
 
 
-# ---------------------------------------Objects --------------------------------------- #
+# --------------------------------------- main  --------------------------------------- #
 my_list = LinkList()
 my_list_2 = LinkList()
 
@@ -224,11 +265,12 @@ my_list.inset_last(1)
 my_list.inset_last(3)
 my_list.inset_last(5)
 
-my_list_2.inset_last(1)
-my_list_2.inset_last(3)
-my_list_2.inset_last(5)
+my_list.inset_last(1)
+my_list.inset_last(3)
+my_list.inset_last(5)
 
+# merged_list = merge(my_list, my_list_2)
 
-merged_list = merge(my_list, my_list_2)
-
-merged_list.displayLL()
+my_list.displayLL()
+ans = my_list.middleOfLL()
+print(ans)
