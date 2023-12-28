@@ -202,33 +202,16 @@ class LinkList:
 
         return False
 
-    def length_of_cycle(self):
-        slow = self.head
-        fast = self.head
 
-        while fast.next != None and fast != None:
-            slow = slow.next
-            fast = fast.next.next
-            if slow == fast:
-                length = 0
-                temp = slow
-                while True:
-                    temp = temp.next
-                    length += 1
+def middleOfLL(head):
+    slow = head
+    fast = head
 
-                    if slow == temp:
-                        return length
-        return 0
+    while fast != None and fast.next != None:
+        slow = slow.next
+        fast = fast.next.next
 
-    def middleOfLL(self):
-        slow = self.head
-        fast = self.head
-
-        while fast != None and fast.next != None:
-            slow = slow.next
-            fast = fast.next.next
-
-        return slow.data
+    return slow
 
 
 def merge(first, second):
@@ -268,9 +251,3 @@ my_list.inset_last(5)
 my_list.inset_last(1)
 my_list.inset_last(3)
 my_list.inset_last(5)
-
-# merged_list = merge(my_list, my_list_2)
-
-my_list.displayLL()
-ans = my_list.middleOfLL()
-print(ans)
