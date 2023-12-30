@@ -41,8 +41,12 @@ class QueueLL:
 
         data = self.__head.data
         self.__head = self.__head.next
+        self.__size -= 1
 
         return data
+
+    def size(self):
+        return self.__size
 
 
 my_queue = QueueLL()
@@ -59,4 +63,5 @@ print(my_queue.dequeue())
 print(my_queue.dequeue())
 print(my_queue.dequeue())
 
-# print(my_queue.is_empty())
+
+print(my_queue.size())
