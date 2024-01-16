@@ -40,16 +40,26 @@ def takeInput():
     return root
 
 
-def takeInputLevelWise():
-    rootData = int(input("Enter the root data : "))
+def height(root):
 
-    root = BinaryTreeNode(rootData)
+    if root is None:
+        return 0
 
-    # queue
-    pendingNodes = Queue()
+    leftHight = height(root.left)
+    rightHeight = height(root.right)
 
-    pendingNodes.put(root)
+    return 1 + max(leftHight, rightHeight)
+
+
+def countNodes(root):
+    # base case
+    if root is None:
+        return 0
+
+    return 1 + countNodes(root.left) + countNodes(root.right)
 
 
 root = takeInput()
+ans = height(root)
+print("The Height of the tree is : ",  ans)
 print_tree(root)
