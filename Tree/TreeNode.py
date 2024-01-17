@@ -46,10 +46,73 @@ def countNodes(root):
     return ans
 
 
+def depthOfNode(root, k):
+    # if we have the root then work
+    if k == 0:
+        print(root.data)
+        return
+
+    for index in range(len(root.children)):
+        depthOfNode(root.children[index], k - 1)
+
+
+def countLeafNodes(root):
+    if root is None:
+        return 0
+
+    # small word
+    if len(root.children) == 0:
+        return 1
+
+    count = 0
+
+    # recursion call
+    for index in range(len(root.children)):
+        count += countLeafNodes(root.children[index])
+
+    return count
+
+
+def preOrder(root):
+    if root is None:
+        return
+
+    print(root.data, end=" ")
+
+    for index in range(len(root.children)):
+        preOrder(root.children[index])
+
+
+def postOrder(root):
+    if root is None:
+        return
+
+    for index in range(len(root.children)):
+        postOrder(root.children[index])
+
+    print(root.data, end=" ")
+
+
+def containsX(root, x):
+    if root is None:
+        return False
+
+    if root.data == x:
+        return True
+
+    for index in range(len(root.children)):
+        smallAns = containsX(root.children[index])
+
+    return smallAns
+
+
 # objects
 root = takeInput()
-printTree(root)
+# printTree(root)
 
-count = countNodes(root)
+# # count = countNodes(root)
+# ans = countLeafNodes(root)
 
-print("The Number of Nodes : ", count)
+# print("The Number of Nodes : ", ans)
+
+postOrder(root)
