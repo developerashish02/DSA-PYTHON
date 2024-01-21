@@ -158,19 +158,53 @@ def connect(root):
 
 
 def findNode(node, x):
-    # Base Case
     if node is None:
-        return None
+        return node
 
     if node.data == x:
         return node
 
-    return findNode(node.left, x)
+    left = findNode(node.left, x)
+
+    if left != None:
+        return left
+
+    return findNode(node.right, x)
+
+
+def findTheLevel(node, x, level):
+    if node is None:
+        return 0
+
+    if node == x:
+        return level
+
+    left = findTheLevel(node.left, x, level+1)
+
+    if left != 0:
+        return left
+
+    return findTheLevel(node.right, x, level+1)
+
+
+def isSiblings(root, x, y):
+    if root == None:
+        return False
+
+    return (root.left == x and root.right == y) or (root.left == y and root.right == x) or isSiblings(root.left, x, y) or isSiblings(root.right, x, y)
+
+
+def isCosigns(root, x, y):
+
+    if root is None:
+        return False
+
+    xx = findNode(root, x)
+    yy = findNode(root, y)
+
+    return (findTheLevel(root, xx, 0) == findTheLevel(root, yy, 0)) and isSiblings(root, xx, yy)
 
 
 root = takeBinaryTreeInput()
-xx = findNode(root, 2)
+xx = findTheLevel(root, 3, 0)
 print(xx)
-# printBinaryTree(root)
-# ans = levelOrderSuccessor(root, 2)
-# print(ans)
