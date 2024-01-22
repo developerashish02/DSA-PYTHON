@@ -205,6 +205,27 @@ def isCosigns(root, x, y):
     return (findTheLevel(root, xx, 0) == findTheLevel(root, yy, 0)) and isSiblings(root, xx, yy)
 
 
+def height(root):
+    if root is None:
+        return 0
+
+    leftHeight = height(root.left)
+    rightHeight = height(root.right)
+
+    return leftHeight + rightHeight + 1
+
+
+def diameterOfBinaryTree(root):
+    if root is None:
+        return 0
+
+    option1 = height(root.left) + height(root.right)
+    option2 = height(root.left)
+    option3 = height(root.right)
+
+    return max(option1, max(option2, option3))
+
+
 root = takeBinaryTreeInput()
 xx = findTheLevel(root, 3, 0)
 print(xx)
